@@ -1,0 +1,59 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="wp-remote-library.js"></script>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link href="wp-remote-library.css" rel="stylesheet">
+</head>
+
+
+<body>
+
+	<div>
+		<div class="form-group">
+		    <label for="files">Inserisci file</label>
+		    <input type="text" class="form-control" id="files" aria-describedby="file input" placeholder="inserisci o carica file">
+		</div>
+	</div>
+
+	<div class="library-modal" id="library-modal" tabindex="-1" role="dialog">
+	    	<div class="modal-content">
+
+	    		<div class="modal-nav">
+	    			<button type="button" class="closer" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+	    			<div class="nav-btn active" data-toggle="#image-library">Libreria</div>
+	    			<div class="nav-btn" data-toggle="#file-upload">Carica file</div>
+	    		</div>
+	    		<div class="modal-notice"></div>
+
+	    		<div class="modal-section active" id="image-library">
+		      		<div class="modal-body">
+		      			<form class="images">
+		      			</form>
+		      		</div>
+		      		<div class="modal-footer">
+		      			<button type="button" class="submit" id="insert_submit">Inserisci</button>
+		      		</div>
+		      	</div>
+
+		        <div class="modal-section" id="file-upload">
+		      		<form id="upload-form">
+			      		<div class="modal-body">
+			      			<label for="file_upload" class="custom-file-upload">
+							    <i class="fa fa-cloud-upload"></i> Cerca..
+							    <input id="file_upload" type="file" multiple>
+							</label>
+							<span id="reset-btn" class="button"><i class="fa fa-times" aria-hidden="true"></i></span>
+							<div id="preview"></div>
+			      		</div>
+			      		<div class="modal-footer">
+			      			<button type="button" class="submit" id="upload_submit" disabled="disabled">Carica</button>
+			      		</div>
+		      		</form>
+		      	</div>
+
+	    	</div>
+	</div>
+		
+</body>
+</html>

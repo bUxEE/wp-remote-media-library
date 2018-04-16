@@ -1,0 +1,231 @@
+.library-modal {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0;
+	transition: all 200ms;
+	z-index: -1;
+	background: rgba(0,0,0,0.6);
+	transition: all 250ms ease;
+}
+
+.library-modal .modal-nav {
+	display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    transition: all 250ms ease;
+}
+
+.library-modal .nav-btn {
+	padding: 5px 10px;
+	float: left;
+	margin: 5px;
+	color: white;
+	cursor: pointer;
+	background: rgb(1,169,232);
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	transition: all 250ms ease;
+}
+
+.library-modal .nav-btn.active {
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.3);
+	background: #037ead;
+}
+
+.library-modal.active {
+	display: block;
+	opacity: 1;
+	z-index: 9999;
+}
+
+.library-modal .modal-section {
+	display: none;
+}
+
+.library-modal .modal-section.active {
+	display: block;
+}
+
+.library-modal .modal-content {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: translateY(110%);
+	transition: all 500ms ease;
+	background: white;
+	max-height: 75%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.library-modal .modal-content .element {
+    padding: 2px;
+    float: left;
+    cursor: pointer;
+}
+
+.library-modal .modal-content .element label {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.library-modal .modal-content .element input[type="checkbox"] {
+	display: none;
+}
+
+.library-modal .modal-content .element input[type="checkbox"]:checked + label:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	border: 2px solid rgb(1,169,232);
+	background: rgba(1,169,232, 0.2);
+}
+
+.library-modal .modal-content .element input[type="checkbox"]:checked + label:before{
+	content: "\2713";
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 25px;
+	height: 25px;
+	background: #53c353;
+	color: white;
+	z-index: 3;
+	text-align: center;
+	font-weight: 800;
+	line-height: 25px;
+}
+
+.library-modal input[type="file"] {
+    display: none;
+}
+.library-modal #file_url {
+    height: 32px;
+    border-left: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    width: calc(100% - 150px);
+}
+.library-modal .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.library-modal #preview {
+	width: 100%;
+}
+
+.library-modal .modal-content .element img {
+    width: auto;
+    height: 100px;
+}
+
+.library-modal .modal-content .element .title {
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 5px;
+    transition: all 250ms ease;
+}
+
+.library-modal .modal-content #reset-btn {
+	border: 1px solid #ca1717;
+    display: inline-block;
+    color: #ca1717;
+    padding: 6px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.library-modal .modal-title {
+	margin: 0;
+	transition: all 250ms ease;
+}
+.library-modal .modal-header {
+	padding: 10px;
+	margin: 0;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+.library-modal .modal-body {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 5px;
+	transition: all 250ms ease;
+}
+
+.library-modal .modal-content.active {
+	transform: translateY(0);
+}
+
+.library-modal .modal-footer {
+	padding: 10px;
+	margin: 0;
+	border-top: 1px solid #ccc;
+	width: 100%;
+}
+
+#upload_submit[disabled] {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.library-modal .submit {
+    background: rgb(1,169,232);
+    font-size: 16px;
+    text-align: center;
+    padding: 8px 16px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: white;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+.library-modal .closer {
+	position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    font-size: 18px;
+    height: 39px;
+    width: 40px;
+    line-height: 0;
+    text-align: center;
+    border: 1px solid #ca1717;
+    color: #ca1717;
+    outline: none;
+    cursor: pointer;
+}
+.library-modal .closer:focus, .library-modal .closer:hover, .library-modal .closer:active {
+	outline: none;
+}
+.library-modal .loader {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(255,255,255,0.9);
+}
+.library-modal .loader .loader-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+}
