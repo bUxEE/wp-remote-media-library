@@ -35,16 +35,16 @@ class WPremoteLibrary
 	}
 
 	/**
-    * ADD CUSTOM IMAGE SIZES TO WP EDITOR 
-    **/
-    function add_icon100_image_size() {
-        add_image_size( 'icon100', '100', '100', false );
-    }
+	* ADD CUSTOM IMAGE SIZES TO WP EDITOR 
+	**/
+	function add_icon100_image_size() {
+		add_image_size( 'icon100', '100', '100', false );
+	}
 
 	/**
-    * Upload file
-    */
-    private static function upload_files_remote() {
+	* Upload file
+	*/
+	private static function upload_files_remote() {
 		if(!isset($_POST["action"])) {
 			$_POST = json_decode(file_get_contents('php://input'), true);
 		}
@@ -54,52 +54,50 @@ class WPremoteLibrary
 			die();
 		}
 
-    	if(!woptima_isset_notempty([$_POST["user_id"],$_POST["files"]])) {
-    		echo self::json_resp(300, "Missing parameters");
+		if(!woptima_isset_notempty([$_POST["user_id"],$_POST["files"]])) {
+			echo self::json_resp(300, "Missing parameters");
 			die();
-    	}
+		}
 
-    	if(isset($_POST["user_id"]) && $_POST["user_id"] != "") {
+		if(isset($_POST["user_id"]) && $_POST["user_id"] != "") {
 			if(!self::woptima_user_id_exists($_POST["user_id"])) {
 				echo self::json_resp(300, "User with given id does not exist");
 				die();
 			}
 		}
 
-    	$resp  = [];
-    	$files = $_POST["files"];
+		$resp  = [];
+		$files = $_POST["files"];
 
-    	if(empty($files) || !isset($files) || $files == "") {
+		if(empty($files) || !isset($files) || $files == "") {
 			echo self::json_resp(300, "Error creating file on server - maybe due to wrong parameter value");
 			die();
-    	}
+		}
 
-    	if(!is_array($files)) {
-    		$tmp     = $files;
-    		$files   = [];
-    		$files[] = $tmp;
-    	}
+		if(!is_array($files)) {
+			$tmp     = $files;
+			$files   = [];
+			$files[] = $tmp;
+		}
 
-    	foreach ($files as $singleFile) {
-    		$singleFile     = (object)$singleFile;
-	    	$filename 		= $singleFile->filename;
-	    	$nicename 		= str_replace(["-","_"], " ", pathinfo($filename, PATHINFO_FILENAME));
-	    	$decoded 		= base64_decode($singleFile->file);
-	    	$mime 			= $singleFile->mime;
-	    	$user_id 		= $_POST["user_id"];
-		    $upload_dir 	= wp_upload_dir();
-			$upload_path 	= str_replace( '/', DIRECTORY_SEPARATOR, $upload_dir['path'] ) . DIRECTORY_SEPARATOR;
+		foreach ($files as $singleFile) {
+			$singleFile     	= (object)$singleFile;
+			$filename 		= $singleFile->filename;
+			$nicename 		= str_replace(["-","_"], " ", pathinfo($filename, PATHINFO_FILENAME));
+			$decoded 		= base64_decode($singleFile->file);
+			$mime 			= $singleFile->mime;
+			$user_id 		= $_POST["user_id"];
+			$upload_dir 		= wp_upload_dir();
+			$upload_path 		= str_replace( '/', DIRECTORY_SEPARATOR, $upload_dir['path'] ) . DIRECTORY_SEPARATOR;
 
-			elogp($filename);
 			$image_upload 	= file_put_contents( $upload_path.$filename, $decoded );
-			elogp($image_upload);
 
 			if( !function_exists( 'wp_handle_sideload' ) ) {
-			 	require_once( ABSPATH . 'wp-admin/includes/file.php' );
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			}
 
 			if( !function_exists( 'wp_get_current_user' ) ) {
-			 	require_once( ABSPATH . 'wp-includes/pluggable.php' );
+				require_once( ABSPATH . 'wp-includes/pluggable.php' );
 			}
 
 			if ( ! function_exists( 'wp_crop_image' ) ) {
@@ -144,14 +142,14 @@ class WPremoteLibrary
 		}
 
 		echo self::json_resp(200, "Success", $resp);
-    	die();
+		die();
 	}
 
 	/**
-    * Get attachments
-    */
-    private static function get_user_files($user_id="",$showAll=false) {
-    	if(!isset($_POST["action"])) {
+	* Get attachments
+	*/
+	private static function get_user_files($user_id="",$showAll=false) {
+		if(!isset($_POST["action"])) {
 			$_POST = json_decode(file_get_contents('php://input'), true);
 		}
 
@@ -160,21 +158,21 @@ class WPremoteLibrary
 			die();
 		}
 
-    	if(!woptima_isset_notempty($_POST["user_id"])) {
-    		echo self::json_resp(300, "Missing parameters");
+		if(!woptima_isset_notempty($_POST["user_id"])) {
+			echo self::json_resp(300, "Missing parameters");
 			die();
-    	}
+		}
 
-    	if(isset($_POST["user_id"]) && $_POST["user_id"] != "") {
+		if(isset($_POST["user_id"]) && $_POST["user_id"] != "") {
 			if(!self::woptima_user_id_exists($_POST["user_id"])) {
 				echo self::json_resp(300, "User with given id does not exist");
 				die();
 			}
 		}
 
-	    $args = array(
-		    'post_type'      => 'attachment',
-		    'posts_per_page' => -1,
+		$args = array(
+			'post_type'      => 'attachment',
+			'posts_per_page' => -1,
 		);
 
 		if(!$showAll) {
@@ -185,19 +183,19 @@ class WPremoteLibrary
 
 		if(empty($files)) {
 			echo self::json_resp(300, "No files");
-	    	die();
+		die();
 		}
 
 		foreach ($files as $key => $file) {
-			$img_parts		= pathinfo($file->guid);
-			$name			= $img_parts['filename'];
-			$icon 			= wp_get_attachment_image_src( $file->ID, 'icon100' );
+			$img_parts	= pathinfo($file->guid);
+			$name		= $img_parts['filename'];
+			$icon 		= wp_get_attachment_image_src( $file->ID, 'icon100' );
 			$file->icon   	= $icon[0];
 			$file->filename = $name;
 		}
-		
+
 		echo self::json_resp(200, "Success", $files);
-    	die();
-    }
+		die();
+	}
 
 }
