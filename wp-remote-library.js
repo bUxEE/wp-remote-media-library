@@ -1,28 +1,28 @@
 var wpRemoteLibrary = function(api,field,user_id,show_all) {
-	var lib 			= this;
-	this.user_id        = user_id;
-	this.url 			= api.url,
-	this.key 			= api.key,
-	this.token 			= api.token,
+	var lib 	    	= this;
+	this.user_id        	= user_id;
+	this.url 		= api.url,
+	this.key 		= api.key,
+	this.token 		= api.token,
 	this.showAll 		= show_all,
 	this.modal  		= $('#library-modal');
-	this.navs  		    = $('#library-modal .nav-btn');
+	this.navs  		= $('#library-modal .nav-btn');
 	this.modalContent 	= $('#library-modal .modal-content');
-	this.modalBody 	    = $('#library-modal #image-library .modal-body');
-	this.closeButton    = $('#library-modal .closer');
-	this.submitButton   = $('#library-modal #insert_submit');
-	this.modalNotice    = $('#library-modal .modal-notice')
+	this.modalBody 	    	= $('#library-modal #image-library .modal-body');
+	this.closeButton    	= $('#library-modal .closer');
+	this.submitButton   	= $('#library-modal #insert_submit');
+	this.modalNotice    	= $('#library-modal .modal-notice')
 	this.field  		= $(field);
-	this.uploadField    = $('#library-modal input[type="file"]');
-	this.uploadButton   = $('#library-modal #upload_submit');
-	this.selected       = [];
-	this.files          = [];
+	this.uploadField    	= $('#library-modal input[type="file"]');
+	this.uploadButton   	= $('#library-modal #upload_submit');
+	this.selected       	= [];
+	this.files          	= [];
 	this.loader 		= $('<div class="loader">'+
-				  				'<div class="loader-icon">'+
-				  					'<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>'+
-									'<span class="sr-only">Loading...</span>'+
-				  				'</div>'+
-							'</div>');
+					'<div class="loader-icon">'+
+						'<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>'+
+						'<span class="sr-only">Loading...</span>'+
+					'</div>'+
+				    '</div>');
 
 	this.init = function() {
 		this.listeners();
