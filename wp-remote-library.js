@@ -122,8 +122,8 @@ var wpRemoteLibrary = function(api,field,user_id,show_all) {
 			    var reader    = new FileReader();
 			    var mimes     = {"png":"image/png","gif":"image/gif","jpg":"image/jpeg","jpeg":"image/jpeg","pdf":"application/pdf","doc":"application/msword","docx":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","txt":"text/plain",".xls":"application/vnd.ms-excel", "xlsx":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
 			    reader.onload = function(e) {  
-			    	var ext         = file.name.substr(file.name.lastIndexOf('.') + 1);
-					object 			= {};
+			    	var ext   = file.name.substr(file.name.lastIndexOf('.') + 1);
+					object 		= {};
 					object.filename = file.name;
 					object.mime     = mimes[ext];
 					object.file 	= reader.result.split(',').pop();
@@ -143,9 +143,9 @@ var wpRemoteLibrary = function(api,field,user_id,show_all) {
 		lib.loader.appendTo(lib.modalContent);
 		var data = JSON.stringify({
 		    key      : lib.key,
-	    	token    : lib.token,
-		    action 	 : "upload_files_remote",
-		    user_id	 : lib.user_id,
+	    	    token    : lib.token,
+		    action   : "upload_files_remote",
+		    user_id  : lib.user_id,
 		    files    : lib.files
 		});
 		$.ajax({
@@ -175,11 +175,11 @@ var wpRemoteLibrary = function(api,field,user_id,show_all) {
 		lib.loader.appendTo(lib.modalContent);
 		$.post( this.url, 
 			{
-			    key: lib.key,
-			    token: lib.token,
-			    action:"get_files_remote",
-			    user_id: lib.user_id,
-			    show_all: lib.showAll
+			    key	     : lib.key,
+			    token    : lib.token,
+			    action   :"get_files_remote",
+			    user_id  : lib.user_id,
+			    show_all : lib.showAll
 			}
 		).done(function( resp ) {
 			console.log(resp);
@@ -190,7 +190,7 @@ var wpRemoteLibrary = function(api,field,user_id,show_all) {
 					    return parseInt(x, 10); 
 					});
 
-					el.icon = lib.setImage(el.post_mime_type, el.icon);
+				el.icon = lib.setImage(el.post_mime_type, el.icon);
 
 		    		var checked = selected.indexOf(el.ID) != -1 ? "checked" : "";
 		    		var img = $('<div class="element" data-id="' + el.ID + '" data-url="' + el.guid + '"><input type="checkbox" name="image-' + el.ID + '" id="image-' + el.ID + '" value="' + el.ID + '" ' + checked + '><label for="image-' + el.ID + '"><img src="'+ el.icon + '"><div class="title">' + el.filename + '</div></label></div>');
@@ -207,8 +207,8 @@ var wpRemoteLibrary = function(api,field,user_id,show_all) {
 
 jQuery(document).ready(function($) {
 	var credentials = {
-		url: 'YOUR_SITE_ADMIN_AJAX_URL',
-		key: "A_SECRET_KEY",
+		url  : 'YOUR_SITE_ADMIN_AJAX_URL',
+		key  : "A_SECRET_KEY",
 		token: "A_SECRET_TOKEN"
 	}
 	// wpRemoteLibrary(credentials,'#FIELD_ID',USER_ID,SHOW_ALL(boolean));
